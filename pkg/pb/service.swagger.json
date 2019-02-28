@@ -15,6 +15,32 @@
     "version": "version not set"
   },
   "paths": {
+    "/reverse": {
+      "post": {
+        "tags": [
+          "DemoContacts"
+        ],
+        "operationId": "DemoContactsReverse",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/serviceContact"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "POST operation response",
+            "schema": {
+              "$ref": "#/definitions/serviceReverseResponse"
+            }
+          }
+        }
+      }
+    },
     "/version": {
       "get": {
         "tags": [
@@ -33,6 +59,39 @@
     }
   },
   "definitions": {
+    "serviceContact": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "first_name": {
+          "type": "string"
+        },
+        "home_address": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string",
+          "format": "int64",
+          "readOnly": true
+        },
+        "last_name": {
+          "type": "string"
+        },
+        "middle_name": {
+          "type": "string"
+        }
+      }
+    },
+    "serviceReverseResponse": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "type": "string"
+        }
+      }
+    },
     "serviceVersionResponse": {
       "description": "TODO: Structure your own protobuf messages. Each protocol buffer message is a \nsmall logical record of information, containing a series of name-value pairs.",
       "type": "object",

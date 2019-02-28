@@ -2,7 +2,6 @@ package svc
 
 import (
 	"context"
-
 	"github.com/bwoodworthIBLX/demo_contacts/pkg/pb"
 	"github.com/golang/protobuf/ptypes/empty"
 	"github.com/jinzhu/gorm"
@@ -50,4 +49,12 @@ func (server) GetVersion(context.Context, *empty.Empty) (*pb.VersionResponse, er
 // NewBasicServer returns an instance of the default server interface
 func NewBasicServer(database *gorm.DB) (pb.DemoContactsServer, error) {
 	return &server{db: database}, nil
+}
+
+func (server) Reverse(ctx context.Context, req *pb.ReverseRequest) (*pb.ReverseResponse, error) {
+	r := []rune(req.Payload.FirstName)
+	for i := 0; i < len(r)/2; i = i+1{
+		r[i], r[len(r)-1-i] = r[len(r)-1-i], r[i]
+	}
+	return &pb.ReverseResponse{Result: string(r)}, nil
 }

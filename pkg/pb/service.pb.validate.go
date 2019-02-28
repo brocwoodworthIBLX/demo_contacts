@@ -100,3 +100,221 @@ var _ interface {
 	Cause() error
 	ErrorName() string
 } = VersionResponseValidationError{}
+
+// Validate checks the field values on Contact with the rules defined in the
+// proto definition for this message. If any rules are violated, an error is returned.
+func (m *Contact) Validate() error {
+	if m == nil {
+		return nil
+	}
+
+	// no validation rules for Id
+
+	// no validation rules for FirstName
+
+	// no validation rules for MiddleName
+
+	// no validation rules for LastName
+
+	// no validation rules for Email
+
+	// no validation rules for HomeAddress
+
+	return nil
+}
+
+// ContactValidationError is the validation error returned by Contact.Validate
+// if the designated constraints aren't met.
+type ContactValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e ContactValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e ContactValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e ContactValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e ContactValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e ContactValidationError) ErrorName() string { return "ContactValidationError" }
+
+// Error satisfies the builtin error interface
+func (e ContactValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sContact.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = ContactValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = ContactValidationError{}
+
+// Validate checks the field values on ReverseRequest with the rules defined in
+// the proto definition for this message. If any rules are violated, an error
+// is returned.
+func (m *ReverseRequest) Validate() error {
+	if m == nil {
+		return nil
+	}
+
+	if v, ok := interface{}(m.GetPayload()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return ReverseRequestValidationError{
+				field:  "Payload",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	return nil
+}
+
+// ReverseRequestValidationError is the validation error returned by
+// ReverseRequest.Validate if the designated constraints aren't met.
+type ReverseRequestValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e ReverseRequestValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e ReverseRequestValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e ReverseRequestValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e ReverseRequestValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e ReverseRequestValidationError) ErrorName() string { return "ReverseRequestValidationError" }
+
+// Error satisfies the builtin error interface
+func (e ReverseRequestValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sReverseRequest.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = ReverseRequestValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = ReverseRequestValidationError{}
+
+// Validate checks the field values on ReverseResponse with the rules defined
+// in the proto definition for this message. If any rules are violated, an
+// error is returned.
+func (m *ReverseResponse) Validate() error {
+	if m == nil {
+		return nil
+	}
+
+	// no validation rules for Result
+
+	return nil
+}
+
+// ReverseResponseValidationError is the validation error returned by
+// ReverseResponse.Validate if the designated constraints aren't met.
+type ReverseResponseValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e ReverseResponseValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e ReverseResponseValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e ReverseResponseValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e ReverseResponseValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e ReverseResponseValidationError) ErrorName() string { return "ReverseResponseValidationError" }
+
+// Error satisfies the builtin error interface
+func (e ReverseResponseValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sReverseResponse.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = ReverseResponseValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = ReverseResponseValidationError{}
